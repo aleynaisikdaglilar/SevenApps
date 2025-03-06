@@ -8,29 +8,31 @@
 import XCTest
 @testable import SevenApps
 
-/// `UserRepository` sınıfının birim testlerini içeren test sınıfı.
 class UserRepositoryTests: XCTestCase {
     var repository: UserRepository!
-    
+    var mockService: MockUserService!
+
     override func setUp() {
         super.setUp()
-        repository = UserRepository(service: MockUserService())  // Test için sahte servis kullanıyoruz
+        mockService = MockUserService()
+        repository = UserRepository(service: mockService)
     }
 
     override func tearDown() {
         repository = nil
+        mockService = nil
         super.tearDown()
     }
 
-    /// Önbelleğe alma mekanizmasının çalıştığını test eder.
+    /// Önbellekleme mekanizmasının çalıştığını test eder.
     func testCacheMechanism() {
-        let expectation = XCTestExpectation(description: "Cache mekanizması çalışıyor")
+        let expectation = XCTestExpectation(description: "Önbellek mekanizması test ediliyor")
 
         repository.getUsers { firstCallResult in
             switch firstCallResult {
             case .success(let firstUsers):
                 XCTAssertFalse(firstUsers.isEmpty, "İlk API çağrısı sonucu boş olmamalı")
-                
+
                 // İkinci kez çağırdığımızda API yerine cache'den gelmeli
                 self.repository.getUsers { secondCallResult in
                     switch secondCallResult {

@@ -1,5 +1,5 @@
 //
-//  MockUserService.swift
+//  MockUserRepository.swift
 //  SevenApps
 //
 //  Created by Aleyna Işıkdağlılar on 6.03.2025.
@@ -8,9 +8,9 @@
 import Foundation
 @testable import SevenApps
 
-/// Gerçek API çağrısı yapmadan test etmek için kullanılan sahte servis (Mock Service).
-class MockUserService: UserServiceProtocol {
-    /// Test için kullanılacak sahte kullanıcı listesi.
+class MockUserRepository: UserRepositoryProtocol {
+    var shouldReturnError = false  // Varsayılan olarak false, yani başarılı yanıt döndürür.
+    
     let mockUsers: [User] = [
         User(id: 1, name: "Test User 1", username: "testuser1", email: "test1@example.com",
              address: Address(street: "Street 1", suite: "Apt. 1", city: "City 1", zipcode: "12345"),
@@ -22,10 +22,13 @@ class MockUserService: UserServiceProtocol {
              phone: "987-654-3210", website: "test2.com",
              company: Company(name: "Company 2", catchPhrase: "Catchphrase 2", bs: "Business 2"))
     ]
-
-    /// Gerçek API çağrısı yapmadan test için sahte kullanıcıları döndürür.
-    func fetchUsers(completion: @escaping (Result<[User], NetworkError>) -> Void) {
-        completion(.success(mockUsers))
+    
+    func getUsers(completion: @escaping (Result<[User], NetworkError>) -> Void) {
+        if shouldReturnError {
+            completion(.failure(NetworkError.requestFailed(NSError(domain: "", code: -1009, userInfo: nil))))
+        } else {
+            completion(.success(mockUsers))
+        }
     }
 }
 

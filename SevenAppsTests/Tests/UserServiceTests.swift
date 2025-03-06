@@ -6,11 +6,10 @@
 //
 
 import XCTest
-@testable import SevenApps  // Projemizi test edebilmek için import ediyoruz
+@testable import SevenApps  
 
-/// `UserService` sınıfının birim testlerini içeren test sınıfı.
 class UserServiceTests: XCTestCase {
-    var userService: UserService!  // Test edilecek servis
+    var userService: UserService!
     
     override func setUp() {
         super.setUp()
@@ -22,7 +21,6 @@ class UserServiceTests: XCTestCase {
         super.tearDown()
     }
 
-    /// API çağrısının başarılı olup olmadığını test eder.
     func testFetchUsersSuccess() {
         let expectation = XCTestExpectation(description: "API başarıyla veri getirdi")
         
@@ -36,6 +34,6 @@ class UserServiceTests: XCTestCase {
             }
         }
         
-        wait(for: [expectation], timeout: 5.0)  // API çağrısının tamamlanması için bekleme süresi
+        wait(for: [expectation], timeout: 5.0)  
     }
 }

@@ -38,14 +38,16 @@ class UserListViewModel {
         
         repository.getUsers { [weak self] result in
             DispatchQueue.main.async {
-                self?.onLoadingStateChanged?(false)  // API cevabı geldikten sonra loading kapat
+                guard let self = self else { return }
+                self.onLoadingStateChanged?(false)  // API cevabı geldikten sonra loading kapat
                 
                 switch result {
                 case .success(let users):
-                    self?.users = users
-                    self?.onUsersUpdated?()  // UI güncellenmesi için callback çalıştır
+                    self.users = users
+                    self.onUsersUpdated?()  // UI güncellenmesi için callback çalıştır
                 case .failure(let error):
-                    self?.onError?(error.getMessage())  // Hata mesajını UI'a ilet
+                    let errorMessage = ErrorManager.handle(error: error)  // Merkezi hata yönetimi
+                    self.onError?(errorMessage)  // UI'a hata mesajını gönder   
                 }
             }
         }
