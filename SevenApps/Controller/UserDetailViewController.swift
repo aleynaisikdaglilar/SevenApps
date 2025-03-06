@@ -7,14 +7,19 @@
 
 import UIKit
 
+/// Kullanıcı detaylarını gösteren ViewController.
+/// Seçilen kullanıcının detay bilgilerini `UserDetailView` içinde gösterir.
 class UserDetailViewController: UIViewController {
-    private let userDetailView = UserDetailView()
-    private let user: User
+    private let userDetailView = UserDetailView() // Kullanıcı detaylarını gösterecek UI bileşeni.
+    private let user: User // Görüntülenecek kullanıcı.
 
+    /// ViewController’ın ana View'ini `UserDetailView` olarak ayarlıyoruz.
     override func loadView() {
         view = userDetailView
     }
     
+    /// Kullanıcı bilgisini alarak `UserDetailViewController`’ı başlatıyoruz.
+    /// - Parameter user: Detayları gösterilecek kullanıcı.
     init(user: User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
@@ -26,24 +31,25 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = user.name
-        configureData()
+        title = user.name 
+        configureData() // Kullanıcı detaylarını UI’a aktarıyoruz.
     }
     
+    /// Kullanıcı detaylarını `infoLabel` içerisine `NSAttributedString` ile formatlı şekilde yerleştiriyoruz.
     private func configureData() {
         let attributedText = NSMutableAttributedString()
         
         func boldText(_ text: String) -> NSAttributedString {
             return NSAttributedString(
                 string: text,
-                attributes: [.font: UIFont.boldSystemFont(ofSize: 16)]
+                attributes: [.font: UIFont.boldSystemFont(ofSize: UIConstants.labelFontSize)]
             )
         }
         
         func normalText(_ text: String) -> NSAttributedString {
             return NSAttributedString(
                 string: text,
-                attributes: [.font: UIFont.systemFont(ofSize: 16)]
+                attributes: [.font: UIFont.systemFont(ofSize: UIConstants.labelFontSize)]
             )
         }
         
@@ -71,6 +77,6 @@ class UserDetailViewController: UIViewController {
         attributedText.append(boldText("📊 Bs: "))
         attributedText.append(normalText("\(user.company.bs)\n\n"))
         
-        userDetailView.infoLabel.attributedText = attributedText
+        userDetailView.infoLabel.attributedText = attributedText // UI’a güncellenmiş veriyi aktarıyoruz.
     }
 }

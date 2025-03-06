@@ -7,12 +7,13 @@
 
 import UIKit
 
+// Kullanıcı listesindeki her satırı temsil eden hücre.
 class UserTableViewCell: UITableViewCell {
     static let identifier = "UserTableViewCell"
 
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: UIConstants.labelFontSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

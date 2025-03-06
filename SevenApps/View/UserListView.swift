@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Kullanıcı listesini göstermek için kullanılan ana View.
 class UserListView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()

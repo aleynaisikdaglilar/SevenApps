@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		74A3D8F82D792C4F00434529 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7490D5D82D777273002A61FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7490D5DF2D777274002A61FA;
+			remoteInfo = SevenApps;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		7490D5E02D777274002A61FA /* SevenApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74A3D8F42D792C4F00434529 /* SevenAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SevenAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -15,8 +26,24 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Tests/Mocks/MockUserRepository.swift,
+				Tests/Mocks/MockUserService.swift,
+				Tests/UserListViewModelTests.swift,
+				Tests/UserRepositoryTests.swift,
+				Tests/UserServiceTests.swift,
 			);
 			target = 7490D5DF2D777274002A61FA /* SevenApps */;
+		};
+		74A3D8FE2D792C6200434529 /* Exceptions for "SevenApps" folder in "SevenAppsTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/Mocks/MockUserRepository.swift,
+				Tests/Mocks/MockUserService.swift,
+				Tests/UserListViewModelTests.swift,
+				Tests/UserRepositoryTests.swift,
+				Tests/UserServiceTests.swift,
+			);
+			target = 74A3D8F32D792C4F00434529 /* SevenAppsTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -25,14 +52,27 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				7490D5F22D777276002A61FA /* Exceptions for "SevenApps" folder in "SevenApps" target */,
+				74A3D8FE2D792C6200434529 /* Exceptions for "SevenApps" folder in "SevenAppsTests" target */,
 			);
 			path = SevenApps;
+			sourceTree = "<group>";
+		};
+		74A3D8F52D792C4F00434529 /* SevenAppsTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SevenAppsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7490D5DD2D777274002A61FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74A3D8F12D792C4F00434529 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				7490D5E22D777274002A61FA /* SevenApps */,
+				74A3D8F52D792C4F00434529 /* SevenAppsTests */,
 				7490D5E12D777274002A61FA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				7490D5E02D777274002A61FA /* SevenApps.app */,
+				74A3D8F42D792C4F00434529 /* SevenAppsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +125,29 @@
 			productReference = 7490D5E02D777274002A61FA /* SevenApps.app */;
 			productType = "com.apple.product-type.application";
 		};
+		74A3D8F32D792C4F00434529 /* SevenAppsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74A3D8FA2D792C4F00434529 /* Build configuration list for PBXNativeTarget "SevenAppsTests" */;
+			buildPhases = (
+				74A3D8F02D792C4F00434529 /* Sources */,
+				74A3D8F12D792C4F00434529 /* Frameworks */,
+				74A3D8F22D792C4F00434529 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74A3D8F92D792C4F00434529 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				74A3D8F52D792C4F00434529 /* SevenAppsTests */,
+			);
+			name = SevenAppsTests;
+			packageProductDependencies = (
+			);
+			productName = SevenAppsTests;
+			productReference = 74A3D8F42D792C4F00434529 /* SevenAppsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +160,10 @@
 				TargetAttributes = {
 					7490D5DF2D777274002A61FA = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					74A3D8F32D792C4F00434529 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 7490D5DF2D777274002A61FA;
 					};
 				};
 			};
@@ -113,12 +182,20 @@
 			projectRoot = "";
 			targets = (
 				7490D5DF2D777274002A61FA /* SevenApps */,
+				74A3D8F32D792C4F00434529 /* SevenAppsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7490D5DE2D777274002A61FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74A3D8F22D792C4F00434529 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +212,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		74A3D8F02D792C4F00434529 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74A3D8F92D792C4F00434529 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7490D5DF2D777274002A61FA /* SevenApps */;
+			targetProxy = 74A3D8F82D792C4F00434529 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7490D5F42D777276002A61FA /* Debug */ = {
@@ -309,6 +401,40 @@
 			};
 			name = Release;
 		};
+		74A3D8FB2D792C4F00434529 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SevenAppsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SevenApps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SevenApps";
+			};
+			name = Debug;
+		};
+		74A3D8FC2D792C4F00434529 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SevenAppsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SevenApps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SevenApps";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -326,6 +452,15 @@
 			buildConfigurations = (
 				7490D5F42D777276002A61FA /* Debug */,
 				7490D5F52D777276002A61FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74A3D8FA2D792C4F00434529 /* Build configuration list for PBXNativeTarget "SevenAppsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74A3D8FB2D792C4F00434529 /* Debug */,
+				74A3D8FC2D792C4F00434529 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

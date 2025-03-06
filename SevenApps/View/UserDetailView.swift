@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Kullanıcı detaylarını göstermek için kullanılan View.
 class UserDetailView: UIView {
     let infoLabel: UILabel = {
         let label = UILabel()

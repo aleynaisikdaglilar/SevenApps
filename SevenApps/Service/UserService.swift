@@ -7,44 +7,28 @@
 
 import Foundation
 
+/// Kullanıcılarla ilgili API işlemlerini gerçekleştiren servis protokolü.
+/// `UserService` sınıfını test edebilmek için bağımlılığı gevşetmek amacıyla kullanılır.
 protocol UserServiceProtocol {
+    /// Kullanıcı listesini API'den çeker.
+    /// - Parameter completion: Başarı durumunda `User` dizisi, hata durumunda `NetworkError`
     func fetchUsers(completion: @escaping (Result<[User], NetworkError>) -> Void)
 }
 
+/// Kullanıcı verilerini almak için kullanılan servis.
+/// Bu sınıf, `NetworkService` üzerinden API'ye istek yapar.
 class UserService: UserServiceProtocol {
-    func fetchUsers(completion: @escaping (Result<[User], NetworkError>) -> Void) {
-        let fakeError = Bool.random()  // %50 ihtimalle hata döndür
-        if fakeError {
-            completion(.failure(.requestFailed(NSError(domain: "", code: -1009, userInfo: [NSLocalizedDescriptionKey: "İnternet bağlantınız yok."]))))
-            return
-        }
-        request(endpoint: APIConstants.usersURL, completion: completion)
+    private let networkService: NetworkServiceProtocol
+
+    /// `NetworkService` bağımlılığını dışarıdan alarak bağımsız hale getiriyoruz.
+    /// Böylece farklı `NetworkService` implementasyonları ile test edilebilir.
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
+        self.networkService = networkService
     }
     
-    private func request<T: Decodable>(endpoint: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
-        guard let url = URL(string: endpoint) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(.requestFailed(error)))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            do {
-                let decodedData = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(decodedData))
-            } catch {
-                completion(.failure(.decodingError(error)))
-            }
-        }
-        task.resume()
+    /// Kullanıcı listesini API'den getirir.
+    /// - Parameter completion: Başarı durumunda `User` dizisi, hata durumunda `NetworkError`
+    func fetchUsers(completion: @escaping (Result<[User], NetworkError>) -> Void) {
+        networkService.request(route: .fetchUsers, method: .get, parameters: nil, completion: completion)
     }
 }
